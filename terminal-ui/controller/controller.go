@@ -33,7 +33,7 @@ type Controller struct {
 
 	SysText *widgets.Paragraph // OK
 
-	// GCCPUFraction *widgets.Gauge // TODO crashes the whole application!
+	GCCPUFraction *widgets.Gauge // TODO crashes the whole application!
 
 	HeapAllocBarChart     *widgets.BarChart
 	HeapAllocBarChartData *statRing
@@ -50,7 +50,7 @@ func NewController() *Controller {
 
 		SysText: widgets.NewParagraph(),
 
-		// GCCPUFraction: widgets.NewGauge(),
+		GCCPUFraction: widgets.NewGauge(),
 
 		HeapAllocBarChart:     widgets.NewBarChart(),
 		HeapAllocBarChartData: newChartRing(heapAllocBarCount),
@@ -71,8 +71,8 @@ func (c *Controller) initUI() {
 	c.SysText.PaddingLeft = 25
 	c.SysText.PaddingTop = 3
 
-	// c.GCCPUFraction.Title = "GCCPUFraction 0%~100%"
-	// c.GCCPUFraction.BarColor = ui.Color(50) // xterm color Cyan2
+	c.GCCPUFraction.Title = "GCCPUFraction 0%~100%"
+	c.GCCPUFraction.BarColor = ui.Color(50) // xterm color Cyan2
 
 	c.HeapAllocBarChart.BarGap = 2
 	c.HeapAllocBarChart.BarWidth = 8
@@ -91,12 +91,23 @@ func (c *Controller) initUI() {
 		// ),
 		// ui.NewRow(.5, c.HeapAllocBarChart),
 
-		// EXTENDED
+		// NORMAL
+		// ui.NewRow(.2, c.HeapObjectsSparklineGroup),
+		// ui.NewRow(.8,
+		// 	ui.NewCol(.5,
+		// 		ui.NewRow(.2, c.SysText),
+		// 		ui.NewRow(.8, c.HeapAllocBarChart),
+		// 	),
+		// 	ui.NewCol(.5, c.HeapPie),
+		// ),
+
+		// ORIGIN / EXTENDED
 		ui.NewRow(.2, c.HeapObjectsSparklineGroup),
 		ui.NewRow(.8,
 			ui.NewCol(.5,
 				ui.NewRow(.2, c.SysText),
-				ui.NewRow(.8, c.HeapAllocBarChart),
+				ui.NewRow(.2, c.GCCPUFraction),
+				ui.NewRow(.6, c.HeapAllocBarChart),
 			),
 			ui.NewCol(.5, c.HeapPie),
 		),
