@@ -7,9 +7,9 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	
+
 	"github.com/google/gops/agent"
-	
+
 	"go-metrics/logging"
 	"go-metrics/monitoring"
 	"go-metrics/rest"
@@ -34,7 +34,7 @@ func main() {
 	defer restServer.Shutdown()
 
 	startGopsAgent()
-	
+
 	startDebugServer()
 
 	logging.Log.Infoln("[MAIN] echo-server ready!")
@@ -79,7 +79,7 @@ func startGopsAgent() {
 }
 
 func startDebugServer() {
-	logging.Log.Info("Start debug REST server on port 6060")
+	logging.Log.Info("[MAIN] Start debug REST server on port 6060")
 	go http.ListenAndServe(":6060", nil)
 }
 
