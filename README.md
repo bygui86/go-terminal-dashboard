@@ -4,20 +4,23 @@
 ## Run
 
 1. server (first terminal window)
-	```
-	cd go-metrics
+
+	```bash
+	cd go-metrics/
+
 	go run main.go
 	```
 
-2. terminal-ui (second terminal window)
-	```
-	cd terminal-ui
+1. terminal-ui (second terminal window)
+
+	```bash
+	cd terminal-ui/
+
 	go run main.go -url http://localhost:6060/debug/vars
 	```
 
----
-
 ## Links
+
 - https://levelup.gitconnected.com/building-a-terminal-dashboard-in-golang-in-300-lines-of-code-3b9f83f363a8
 - https://pkg.go.dev/expvar?tab=doc
 - http://blog.ralch.com/tutorial/golang-metrics-with-expvar/
